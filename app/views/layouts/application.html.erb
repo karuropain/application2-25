@@ -30,7 +30,7 @@
         <%= link_to "Home", root_path %>
       </li>
       <li>
-        <%= link_to "About", root_path %>
+        <%= link_to "About", homes_about_path %>
       </li>
       <li>
         <%= link_to "Sign up", new_user_registration_path %>
@@ -40,11 +40,21 @@
       </li>
     <% end %>
   </header>
+  
+  <main>
+    <% if user_signed_in? %>
+      <li>
+        <%= link_to 'Create Book', book_path(current_user.id) %>
+      </li>
+    <% end %>
+  </main>
+  
   <%= yield %>
-</body>
 
 <footer>
 <p>CopyRight Infratop.inc</p>
 </footer>
+
+</body>
 
 </html>
