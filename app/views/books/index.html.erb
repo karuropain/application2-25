@@ -2,8 +2,8 @@
 
 <%= form_with model: @user do |f| %>
 
-  <% if @user.image.attached? %>
-    <%= image_tag @user.image %>
+  <% if current_user.image.attached? %>
+    <%= image_tag current_user.image %>
   <% else %>
     <%= image_tag 'no_image', size: "200x200" %>
   <% end %>
