@@ -10,8 +10,36 @@
 
   <h4>name</h4>
   <p><%= current_user.name %></p>
-	
+
   <h4>introduction</h4>
   <p><%= current_user.introduction %></p>
   <%= link_to "編集", edit_user_path(current_user.id) %>
 <% end %>
+
+<h2>New book</h2>
+  <%= form_with model: @Book,url: '/books', method: :post do |f| %>
+  <h4>title</h4>
+  <p><%= f.text_field :title %></p>
+	
+  <h4>Opinion</h4>
+  <p><%= f.text_area :body %></p>
+	
+  <%= f.submit 'Create Book' %>
+  <% end %>
+  
+  
+<h2>Book detail</h2>
+  <% if current_user.image.attached? %>
+    <%= image_tag current_user.image %>
+  <% else %>
+    <%= image_tag 'no_image', size: "200x200" %>
+  <% end %>
+  <p><%= current_user.name %></p>
+
+  <%= @books.each do |list| %>
+    <p><%= @books.title %></p>
+    <p><%= @book.body %></p>
+  <% end %>
+  
+  
+  
