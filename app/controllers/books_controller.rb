@@ -4,12 +4,13 @@ class BooksController < ApplicationController
   end
   
   def index
+    @book = Book.new
     @books = Book.all
   end
   
   def create
     @book = Book.new(book_params)
-    @book_id = current_user.id
+    @book.user_id = current_user.id
     @book.save
     redirect_to '/books'
   end
@@ -21,7 +22,7 @@ class BooksController < ApplicationController
   private
   # ストロングパラメータ
   def book_params
-    params.permit(:title, :body)
+    params.require(:book).permit(:title, :body, :user_id)
   end
   
 end
